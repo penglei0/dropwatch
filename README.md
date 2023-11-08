@@ -3,7 +3,7 @@ DropWatch
 
 [![Dropwatch build status](https://github.com/penglei0/dropwatch/actions/workflows/.github-ci.yml/badge.svg?branch=master)](https://github.com/penglei0/dropwatch/actions/workflows/.github-ci.yml)
 
-Thanks for Downloading Dropwatch!
+A mirror of the dropwatch project from https://github.com/nhorman/dropwatch
 
 What is Dropwatch?
 ------------------
