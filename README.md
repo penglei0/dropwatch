@@ -1,7 +1,7 @@
 DropWatch
 =========
 
-[![Build Status](https://travis-ci.org/nhorman/dropwatch.svg?branch=master)](https://travis-ci.org/nhorman/dropwatch)
+[![Dropwatch build status](https://github.com/penglei0/dropwatch/actions/workflows/.github-ci.yml/badge.svg?branch=master)](https://github.com/penglei0/dropwatch/actions/workflows/.github-ci.yml)
 
 Thanks for Downloading Dropwatch!
 
