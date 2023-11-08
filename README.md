@@ -52,12 +52,20 @@ And the following packages are optional, but recommended:
 
 Building Dropwatch
 ------------------
+
+### 1.Autotools
 Dropwatch uses the autotools suite (autoconf/automake) to build.  To build and install the utility run the following commands:
 ```
 ./autogen.sh
 ./configure
 make
 make install
+```
+
+### 2.CMake
+
+```
+mkdir build
 ```
 
 Questions
