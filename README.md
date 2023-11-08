@@ -37,6 +37,19 @@ when lost packets are rare.  This solution improves on the performance aspect by
 implementing a kernel feature which allows asynchronous notification of dropped
 packets when they happen.
 
+Dependencies
+-----------------
+Dropwatch requires the following packages to build:
+
+- libnl-3.0
+- libnl-genl-3.0
+- readline
+- libpcap
+
+And the following packages are optional, but recommended:
+
+- bfd library
+
 Building Dropwatch
 ------------------
 Dropwatch uses the autotools suite (autoconf/automake) to build.  To build and install the utility run the following commands:
