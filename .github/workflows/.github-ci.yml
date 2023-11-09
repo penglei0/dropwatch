@@ -32,13 +32,29 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Configure CMake
+      - name: Download toolchains
         run: |
-          cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+          wget https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz
+          if [ ! -d /usr/local/arm_gcc10.2_toolchain/ ]; then
+            sudo mkdir -p /usr/local/arm_gcc10.2_toolchain/
+          fi
+          if [ -f gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz ]; then
+            tar -Jxvf gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz -C /usr/local/arm_gcc10.2_toolchain/
+          fi
+          ls -alh /usr/local/arm_gcc10.2_toolchain/
+
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y binutils-dev libreadline-dev libnl-3-dev libnl-genl-3-dev libpcap-dev libnfnetlink-dev
+
+      - name: Configure CMake
+        run: |
+          cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+          cmake -B ${{github.workspace}}/buildarm -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=./cmake/arm_gcc10.2.cmake
+
       - name: Build
-        # Build your program with the given configuration
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -j
+
+      - name: Cross build
+        run: cmake --build ${{github.workspace}}/buildarm --config ${{env.BUILD_TYPE}} -j
