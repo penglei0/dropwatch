@@ -49,7 +49,16 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 include_directories(/usr/include/libnl3)
 
 aux_source_directory(src DIR_SRCS)
-add_executable(dropwatch ${DIR_SRCS})
+add_executable(
+  dropwatch
+  ${PROJECT_SOURCE_DIR}/src/main.c ${PROJECT_SOURCE_DIR}/src/lookup.c
+  ${PROJECT_SOURCE_DIR}/src/lookup_bfd.c ${PROJECT_SOURCE_DIR}/src/lookup_kas.c)
 target_include_directories(dropwatch PUBLIC ${PROJECT_SOURCE_DIR})
 target_link_libraries(dropwatch nl-genl-3 nl-3 pcap readline bfd)
-install(TARGETS dropwatch LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
+
+add_executable(
+  dwdump
+  ${PROJECT_SOURCE_DIR}/src/dwdump.c ${PROJECT_SOURCE_DIR}/src/lookup.c
+  ${PROJECT_SOURCE_DIR}/src/lookup_bfd.c ${PROJECT_SOURCE_DIR}/src/lookup_kas.c)
+target_link_libraries(dwdump nl-genl-3 nl-3 pcap readline bfd)
+install(TARGETS dropwatch dwdump DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
