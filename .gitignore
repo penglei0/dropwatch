@@ -41,3 +41,5 @@ tmp*
 # patch files
 *patch
 *.log
+
+config.h

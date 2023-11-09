@@ -38,6 +38,8 @@ set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "${CMAKE_CXX_FLAGS_RELWITHDEBINFO} -g -O3")
 # dump if set it to true
 set(CMAKE_VERBOSE_MAKEFILE false)
 
+configure_file("${PROJECT_SOURCE_DIR}/config.h.in"
+               "${PROJECT_SOURCE_DIR}/config.h")
 # dependency
 
 # dropwatch
