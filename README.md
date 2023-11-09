@@ -46,6 +46,7 @@ Dropwatch requires the following packages to build:
 - readline
 - libpcap
 - binutils-dev
+- libnfnetlink-dev
 
 And the following packages are optional, but recommended:
 

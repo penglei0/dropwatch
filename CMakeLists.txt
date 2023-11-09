@@ -46,8 +46,6 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 aux_source_directory(src DIR_SRCS)
 
 add_executable(dropwatch ${DIR_SRCS})
-# target_include_directories(dropwatch PUBLIC ${PROJECT_SOURCE_DIR})
-# target_link_libraries(dropwatch ${GENL_LIBRARY} ${NF_LIBRARY}
-# ${NETLINK_LIBRARY} ${MNL_LIBRARY})
-
+target_include_directories(dropwatch PUBLIC ${PROJECT_SOURCE_DIR})
+target_link_libraries(dropwatch nl-genl-3 nl-3 pcap readline)
 install(TARGETS dropwatch LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
