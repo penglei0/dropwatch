@@ -41,7 +41,7 @@ set(CMAKE_VERBOSE_MAKEFILE false)
 configure_file("${PROJECT_SOURCE_DIR}/config.h.in"
                "${PROJECT_SOURCE_DIR}/config.h")
 # dependency
-, we need to install libnl3 and libpcap
+
 # dropwatch
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src)
