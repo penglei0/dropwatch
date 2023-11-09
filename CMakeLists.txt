@@ -41,7 +41,7 @@ set(CMAKE_VERBOSE_MAKEFILE false)
 configure_file("${PROJECT_SOURCE_DIR}/config.h.in"
                "${PROJECT_SOURCE_DIR}/config.h")
 # dependency
-
+, we need to install libnl3 and libpcap
 # dropwatch
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src)
@@ -51,5 +51,5 @@ include_directories(/usr/include/libnl3)
 aux_source_directory(src DIR_SRCS)
 add_executable(dropwatch ${DIR_SRCS})
 target_include_directories(dropwatch PUBLIC ${PROJECT_SOURCE_DIR})
-target_link_libraries(dropwatch nl-genl-3 nl-3 pcap readline)
+target_link_libraries(dropwatch nl-genl-3 nl-3 pcap readline bfd)
 install(TARGETS dropwatch LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/bin)
