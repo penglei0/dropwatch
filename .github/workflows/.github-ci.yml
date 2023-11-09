@@ -37,8 +37,8 @@ jobs:
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
       - name: Install dependencies
         run: |
-          apt-get update
-          apt-get install -y binutils-dev libreadline-dev libnl-3-dev libnl-genl-3-dev libpcap-dev
+          sudo apt-get update
+          sudo apt-get install -y binutils-dev libreadline-dev libnl-3-dev libnl-genl-3-dev libpcap-dev
       - name: Build
         # Build your program with the given configuration
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -j
