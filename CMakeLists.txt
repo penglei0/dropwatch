@@ -45,8 +45,10 @@ configure_file("${PROJECT_SOURCE_DIR}/config.h.in"
 # dropwatch
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_SOURCE_DIR}/src)
-aux_source_directory(src DIR_SRCS)
+# mismatch with libnl3
+include_directories(/usr/include/libnl3)
 
+aux_source_directory(src DIR_SRCS)
 add_executable(dropwatch ${DIR_SRCS})
 target_include_directories(dropwatch PUBLIC ${PROJECT_SOURCE_DIR})
 target_link_libraries(dropwatch nl-genl-3 nl-3 pcap readline)
