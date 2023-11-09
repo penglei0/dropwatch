@@ -33,15 +33,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Download toolchains
+        working-directory: ${{github.workspace}}
         run: |
           wget https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz
-          if [ ! -d /usr/local/arm_gcc10.2_toolchain/ ]; then
-            sudo mkdir -p /usr/local/arm_gcc10.2_toolchain/
+          if [ ! -d ${{github.workspace}}/arm_gcc10.2_toolchain/ ]; then
+            mkdir -p ${{github.workspace}}/arm_gcc10.2_toolchain/
           fi
-          if [ -f gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz ]; then
-            tar -Jxvf gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz -C /usr/local/arm_gcc10.2_toolchain/
+          if [ -f ${{github.workspace}}/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz ]; then
+            tar -Jxvf ${{github.workspace}}/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz -C ${{github.workspace}}/arm_gcc10.2_toolchain/
           fi
-          ls -alh /usr/local/arm_gcc10.2_toolchain/
+          ls -alh ${{github.workspace}}/arm_gcc10.2_toolchain/
 
       - name: Install dependencies
         run: |
@@ -51,7 +52,7 @@ jobs:
       - name: Configure CMake
         run: |
           cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-          cmake -B ${{github.workspace}}/buildarm -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=./cmake/arm_gcc10.2.cmake
+          cmake -B ${{github.workspace}}/buildarm -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=./cmake/arm_gcc10.2.cmake -DTOOLCHAIN_DIR=${{github.workspace}}/arm_gcc10.2_toolchain
 
       - name: Build
         run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} -j
