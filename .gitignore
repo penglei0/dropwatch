@@ -43,3 +43,4 @@ tmp*
 *.log
 
 config.h
+arm_gcc10.2_toolchain
